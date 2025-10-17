@@ -1,0 +1,217 @@
+/* 基础样式重置 */
+* {
+  font-family: 'JetBrains Mono Nerd Font', "0xProto Nerd Font Mono", monospace;
+  color: #eceff4; /* 更亮的白色，提高对比度 */
+  background: transparent;
+  outline: none;
+  box-shadow: none;
+}
+
+/* 主窗口样式 - 毛玻璃效果 */
+#window {
+  background: rgba(41, 46, 66, 0.4); /* 增加不透明度，更清晰可见 */
+  backdrop-filter: blur(20px) saturate(180%);
+  margin: auto;
+  padding: 15px;
+  border-radius: 10px;
+  border: 2px solid rgba(100, 150, 200, 0.4); /* 更冷的蓝色边框 */
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* 暗色模式优化 */
+#window:backdrop {
+  background: rgba(41, 46, 66, 0.98);
+}
+
+/* 外部容器 */
+#outer-box {
+  padding: 10px;
+}
+
+/* 输入框样式 */
+#input {
+  padding: 12px 16px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  background: rgba(27, 31, 111, 0.1); /* 增加不透明度 */
+  border: 2px solid rgba(100, 150, 200, 0.2); /* 更冷的蓝色边框 */
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#input:focus {
+  border-color: #70a8cc; /* 更冷的蓝色 */
+  background: rgba(26, 7, 65, 0.1); /* 增加不透明度 */
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 10px rgba(100, 150, 200, 0.3);
+}
+
+/* 条目样式 */
+#entry {
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin: 2px 0;
+  background: transparent;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  color: #eceff4; /* 确保条目文本颜色一致 */
+}
+
+#entry:hover {
+  background: rgba(67, 76, 94, 0.6); /* 增加不透明度 */
+  border-color: rgba(100, 150, 200, 0.2); /* 更冷的蓝色边框 */
+  transform: translateX(5px);
+  color: #ffffff;
+}
+
+#entry:focus {
+  background: rgba(67, 76, 94, 0.3);
+}
+
+/* 选中条目样式 - 合并所有相关定义 */
+#entry:selected {
+  background: linear-gradient(135deg, #24203d, #4c6a8c); /* 更深的蓝色，提高对比度 */
+  border-color: rgba(136, 192, 208, 0.4);
+  box-shadow: 0 4px 15px rgba(59, 82, 112, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transform: translateX(8px);
+  position: relative;
+}
+
+#entry:selected::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(135deg, rgba(100, 150, 200, 0.4), rgba(50, 100, 150, 0.4));
+  border-radius: 15px;
+  z-index: -1;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+/* 图片样式 */
+#img {
+  margin-right: 8px;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+#entry:selected #img {
+  opacity: 1;
+  filter: brightness(1.5) drop-shadow(0 0 3px rgba(255, 255, 255, 0.5));
+}
+
+/* 文本样式 */
+#text {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600; /* 增加字体权重 */
+  letter-spacing: 0.3px;
+  color: #eceff4;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+#entry:hover #text {
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+#entry:selected #text {
+  color: #ffffff;
+  font-weight: 700;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.6),
+    0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* 滚动条样式 */
+#scroll {
+  margin: 5px;
+  border: none;
+}
+
+#scroll trough {
+  background: rgba(67, 76, 94, 0.3);
+  border-radius: 10px;
+}
+
+#scroll slider {
+  background: linear-gradient(135deg, #345c86, #3a6ea5);
+  border-radius: 10px;
+  min-width: 8px;
+  min-height: 30px;
+}
+
+#scroll slider:hover {
+  background: linear-gradient(135deg, #3a6ea5, #70a8cc);
+}
+
+/* 动画定义 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes glow {
+  from {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0.8;
+    transform: scale(1.02);
+  }
+}
+
+/* 响应式设计 - 小屏幕优化 */
+@media (max-width: 600px) {
+  #window {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 20px;
+  }
+  
+  #input {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+  
+  #entry {
+    padding: 10px 12px;
+  }
+  
+  #text {
+    font-size: 13px;
+  }
+}
+
+/* 低对比度显示器优化 */
+@media (prefers-contrast: low) {
+  #text {
+    color: #ffffff;
+    font-weight: 700;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+  
+  #entry {
+    background: rgba(67, 76, 94, 0.2);
+  }
+  
+  #entry:selected {
+    background: linear-gradient(135deg, #2d5580, #3a6ea5);
+  }
+  
+  #entry:selected #text {
+    color: #ffffff;
+    font-weight: 800;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  }
+}

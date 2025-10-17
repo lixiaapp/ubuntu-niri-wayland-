@@ -1,0 +1,57 @@
+# Swaylock 配置文件
+# 设置锁屏背景图像路径
+image=/home/verfox/Pictures/main_p/106652015_p0.png
+
+# 设置图像缩放模式为fill（填充）
+scaling=fill
+
+# 当提供空密码时，不验证它
+ignore-empty-password
+
+# 禁用Caps Lock文本显示
+disable-caps-lock-text
+
+# 设置文本字体为Cantarelle Regular
+font=Cantarelle Regular
+
+# 可选：设置指示器文本的固定字体大小
+#font-size=9
+
+# 设置即使在空闲状态下也显示指示器
+# indicator-idle-visible
+
+# 设置指示器半径（像素）
+indicator-radius=60
+
+# 设置指示器厚度（像素）
+indicator-thickness=10
+
+# 设置指示器环的颜色（十六进制RGB值）
+ring-color=4C566A
+
+# 设置按键按下时高亮段的颜色
+key-hl-color=A3BE8C
+
+# 设置内部和环之间的线条颜色
+line-color=2E3440
+
+# 设置分隔高亮段的线条颜色
+separator-color=3B4252
+
+# 设置指示器内部的颜色
+inside-color=3B4252
+
+# 设置退格键按下时高亮段的颜色
+bs-hl-color=A3BE8C
+
+# 设置包含布局文本的框的背景颜色
+layout-bg-color=3B4252
+
+# 设置包含布局文本的框的边框颜色
+layout-border-color=4C566A
+
+# 设置布局文本的颜色
+layout-text-color=D8DEE9
+
+# 设置文本的颜色
+text-color=D8DEE9

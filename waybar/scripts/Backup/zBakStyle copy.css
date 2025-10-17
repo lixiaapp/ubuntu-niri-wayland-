@@ -1,0 +1,234 @@
+/* --- 全局样式 --- */
+* {
+  font-family: 'SF Pro Text', 'Inter', 'Segoe UI, NotoSans Nerd Font', sans-serif;
+  font-size: 13px;
+  min-height: 0;
+  padding-right: 0px;
+  padding-left: 0px;
+  padding-bottom: 0px;
+}
+
+/* --- Waybar 容器 --- */
+#waybar {
+  background: transparent;
+  color: #c6d0f5;
+  margin: 0px;
+  font-weight: 500;
+}
+
+/* --- 左侧模块（独立的、完全圆角块 - 带有水平间距和简单悬停效果） --- */
+#workspaces,
+#custom-uptime,
+#cpu {
+  background-color: #1a1b26;
+  padding: 0.3rem 0.7rem;
+  margin: 5px 0px; /* 上下边距5px，左右边距0px（单独控制的基础） */
+  border-radius: 6px; /* 这些模块总是圆角的 */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  min-width: 0;
+  border: none;
+  /* 仅背景色和颜色的过渡效果 */
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+#workspaces {
+  padding: 2px;
+  margin-left: 7px; /* 从最左边缘的边距 */
+  margin-right: 5px; /* 工作区模块后的间距 */
+}
+
+#custom-uptime {
+  margin-right: 5px; /* 运行时间模块后的间距 */
+}
+
+/* 左侧单个模块的简单悬停效果 - 更亮的颜色 */
+#custom-uptime:hover,
+#cpu:hover {
+  background-color: rgb(41, 42, 53); /* 更亮的高亮效果 */
+}
+
+#workspaces button {
+  color: #babbf1;
+  border-radius: 5px; /* 工作区按钮总是圆角的 */
+  padding: 0.3rem 0.6rem;
+  background: transparent;
+  transition: all 0.2s ease-in-out;
+  border: none;
+  outline: none;
+}
+
+#workspaces button.active {
+  color: #99d1db;
+  background-color: rgba(153, 209, 219, 0.1);
+  box-shadow: inset 0 0 0 1px rgba(153, 209, 219, 0.2);
+}
+
+#workspaces button:hover {
+  background: rgb(41, 42, 53); /* 参考亮色悬停颜色 */
+  color: #c6d0f5;
+}
+
+/* --- 中央模块（独立的、完全圆角块 - 带有简单悬停效果） --- */
+#custom-niri-windows,
+#clock {
+  background-color: #1a1b26;
+  padding: 0.3rem 0.7rem;
+  margin: 5px 0px;
+  border-radius: 6px; /* 这个模块总是圆角的 */
+  box-shadow: 0 1px 3px rgba(153, 209, 219, 0.2);
+  min-width: 0;
+  border: none;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+#custom-niri-windows {
+  margin-left: 5px; /* 与前一个模块的间距（例如时钟） */
+  margin-right: 5px; /* 与下一个模块的间距（例如运行时间） */
+}
+
+#custom-niri-windows:hover {
+  background-color: rgb(41, 42, 53); /* 更亮的高亮效果 */
+}
+
+/* 时钟模块的简单悬停效果 - 更亮的颜色 */
+#clock:hover {
+  background-color: rgb(46, 63, 66); /* 更亮的高亮效果 */
+}
+
+#custom-pomodoro {
+    background-color: #1a1b26; /* 一致的深色背景 */
+    padding: 0.3rem 0.7rem; /* 与其他模块一致的内边距（例如CPU、运行时间） */
+    margin: 5px 0px; /* 上下边距5px，左右边距0px（单独控制的基础） */
+    border-radius: 6px; /* 与其他独立模块一致的圆角 */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* 一致的阴影 */
+    min-width: 0;
+    border: none;
+    outline: none; /* 确保没有默认轮廓 */
+    /* 背景色、颜色、轮廓和阴影的过渡效果，以获得平滑效果 */
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, outline 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    color: #babbf1; /* 平静的颜色，与运行时间模块一致 */
+    font-weight: 600; /* 计时器稍微加粗，与时钟一致 */
+}
+
+/* 自定义番茄钟模块的定位和间距 */
+/* #custom-pomodoro {
+    margin-left: 5px; 与前一个模块的间距（例如时钟） 
+    margin-right: 5px;  与无缝右侧栏开始前的间距（例如蓝牙） 
+} */
+
+/* 新番茄钟模块的悬停效果（与其他模块一致 + 矩形轮廓） */
+/*#custom-pomodoro:hover {
+    background-color: rgb(41, 42, 53); 更亮的高亮效果，与其他独立模块一致 
+    color: #c6d0f5;  悬停时文本颜色变化，与其他独立模块一致 
+    outline: 1px solid rgba(255, 255, 255, 0.1);  悬停时的矩形轮廓 
+    outline-offset: -1px;
+}*/
+
+/* --- 番茄钟模块运行时（工作或休息）的高亮状态 --- */
+#custom-pomodoro.work,
+#custom-pomodoro.break {
+  color: #99d1db; /* 与活动工作区按钮一致的文本颜色 */
+  background-color: rgba(153, 209, 219, 0.1); /* 与活动工作区按钮一致的背景颜色 */
+  box-shadow: inset 0 0 0 1px rgba(153, 209, 219, 0.2); /* 轮廓效果的内阴影 */
+  outline: none;
+}
+
+/* --- 右侧模块（单个、无缝栏） --- */
+#bluetooth,
+#pulseaudio,
+#backlight,
+#network,
+#custom-lock,
+#battery {
+  background-color: #1a1b26;
+  padding: 0.3rem 0.7rem;
+  margin: 5px 0px; 
+  border-radius: 0;
+  box-shadow: none;
+  min-width: 0;
+  border: none;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+#bluetooth:hover,
+#pulseaudio:hover,
+#backlight:hover,
+#network:hover,
+#custom-lock:hover,
+#battery:hover {
+  background-color: rgb(41, 42, 53);
+}
+
+#bluetooth {
+  margin-left: 0px; 
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+#battery {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  margin-right: 7px;
+}
+
+#custom-uptime {
+  color: #babbf1;
+}
+#cpu {
+  color: #c6d0f5;
+}
+
+#clock {
+  color: #99d1db;
+  font-weight: 500;
+}
+
+#pulseaudio {
+  color: #c6d0f5;
+}
+#backlight {
+  color: #c6d0f5;
+}
+
+#network {
+  color: #c6d0f5;
+}
+
+#network.disconnected {
+  color: #e78284;
+}
+
+#custom-lock {
+  color: #babbf1;
+}
+#bluetooth {
+  color: #888888;
+  font-size: 16px;
+}
+#bluetooth.on {
+  color: #2196f3;
+}
+#bluetooth.connected {
+  color: #99d1db;
+}
+#battery {
+  color: #99d1db;;
+}
+#battery.charging {
+  color: #a6d189;
+}
+#battery.warning:not(.charging) {
+  color: #e78284;
+}
+
+/* --- 工具提示样式 --- */
+tooltip {
+  background-color: #1a1b26;
+  color: #dddddd;
+  padding: 5px 12px;
+  margin: 5px 0px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  font-size: 12px;
+}

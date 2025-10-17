@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+    <object class="GtkMenu" id="menu">
+        <!-- 待机和休眠选项（已注释） -->
+        <!-- <child>
+            <object class="GtkMenuItem" id="suspend">
+                <property name="label">󰤄 待机</property>
+            </object>
+        </child>
+        <child>
+            <object class="GtkMenuItem" id="hibernat">
+                <property name="label">󰤃 休眠</property>
+            </object>
+        </child>
+        <child>
+            <object class="GtkSeparatorMenuItem" id="delimiter0" />
+        </child> -->
+        
+        <!-- 重启选项 -->
+        <child>
+            <object class="GtkMenuItem" id="reboot">
+                <property name="label">󰜉 重启</property>
+            </object>
+        </child>
+        
+        <!-- 分隔符 -->
+        <child>
+            <object class="GtkSeparatorMenuItem" id="delimiter1" />
+        </child>
+        
+        <!-- 关机选项 -->
+        <child>
+            <object class="GtkMenuItem" id="shutdown">
+                <property name="label">⏻ 关机</property>
+            </object>
+        </child>
+        
+        <!-- 分隔符 -->
+        <child>
+            <object class="GtkSeparatorMenuItem" id="delimiter2" />
+        </child>
+        
+        <!-- 退出会话选项 -->
+        <child>
+            <object class="GtkMenuItem" id="logout">
+                <property name="label">󰍃 退出会话</property>
+            </object>
+        </child>
+        
+        <!-- 锁屏选项 -->
+        <child>
+            <object class="GtkMenuItem" id="lock">
+                <property name="label">󰌾 锁屏</property>
+            </object>
+        </child>
+    </object>
+</interface>
