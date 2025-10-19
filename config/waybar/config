@@ -1,7 +1,7 @@
 {
   "layer": "top",
   "position": "top",
-  "margin-bottom": -10,
+  "margin": "8px 15px -5px 15px", 
   "spacing": 0,
   "modules-left": [
     "custom/uptime",
@@ -17,6 +17,7 @@
   ],
   "modules-right": [
     "tray",
+    "custom/dnd",
     "power-profiles-daemon",
     "bluetooth",
     "pulseaudio",
@@ -24,6 +25,15 @@
     "battery",
     "custom/power"
   ],
+
+  "custom/dnd": {
+    "format": "{text}",
+    "exec": "~/.config/waybar/scripts/show_dnd.sh",
+    "return-type": "json",
+    "interval": 5,
+    "on-click": "~/.config/waybar/scripts/toggle_dnd.sh",
+    "tooltip": true
+  },
 
   "power-profiles-daemon": {
     "format": "{icon}",
@@ -37,7 +47,7 @@
     }
   },
   "custom/power": {
-    "format": "⏻ ",
+    "format": "⏻",
     "tooltip": false,
     "on-click": "~/.config/waybar/scripts/power_menu_plus.sh",
     "on-click-right": "~/.config/waybar/scripts/power_menu_plus.sh"

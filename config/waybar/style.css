@@ -1,6 +1,7 @@
 /* --- 全局样式 --- */
 * {
-  font-family: 'SF Pro Text', 'Inter', 'Segoe UI, NotoSans Nerd Font', sans-serif;
+  font-family: 'JetBrains Mono Nerd Font', monospace;
+  font-weight: bold;
   font-size: 13px;
   min-height: 0;
   padding-right: 0px;
@@ -10,19 +11,23 @@
 
 /* --- Waybar 容器 --- */
 #waybar {
-  background: transparent;
+  background: rgba(22, 21, 35, 0.8);
+  border-radius: 18px;
   color: #c6d0f5;
-  margin: 0px;
+  margin: 0;
   font-weight: 500;
-}
+} 
 
 /* --- 左侧模块（独立的、完全圆角块 - 带有水平间距和简单悬停效果） --- */
+#network,
 #workspaces,
 #custom-uptime,
+#memory,
+#temperature,
 #cpu {
   background-color: #1a1b26;
   padding: 0.3rem 0.7rem;
-  margin: 5px 0px; /* 上下边距5px，左右边距0px（单独控制的基础） */
+  margin: 3px 0px; /* 上下边距5px，左右边距0px（单独控制的基础） */
   border-radius: 6px; /* 这些模块总是圆角的 */
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   min-width: 0;
@@ -30,7 +35,8 @@
   /* 仅背景色和颜色的过渡效果 */
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
-
+#memory,
+#temperature,
 #workspaces {
   padding: 2px;
   margin-left: 7px; /* 从最左边缘的边距 */
@@ -39,9 +45,11 @@
 
 #custom-uptime {
   margin-right: 5px; /* 运行时间模块后的间距 */
+  margin-left: 5px; /* 与前一个模块的间距（例如时钟） */
 }
 
 /* 左侧单个模块的简单悬停效果 - 更亮的颜色 */
+#network:hover,
 #custom-uptime:hover,
 #cpu:hover {
   background-color: rgb(41, 42, 53); /* 更亮的高亮效果 */
@@ -69,6 +77,7 @@
 }
 
 /* --- 中央模块（独立的、完全圆角块 - 带有简单悬停效果） --- */
+#custom-cava,
 #custom-niri-windows,
 #clock {
   background-color: #1a1b26;
@@ -81,9 +90,16 @@
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
+#custom-cava {
+  margin-right: 5px; /* 与下一个模块的间距（例如时钟） */
+  padding: 2px 5px; /* 更紧凑的内边距 */
+  font-size: 14px; /* 稍微小一点的字体 */
+}
 #custom-niri-windows {
+  font-size: 15px;
   margin-left: 5px; /* 与前一个模块的间距（例如时钟） */
   margin-right: 5px; /* 与下一个模块的间距（例如运行时间） */
+  letter-spacing: 2px;
 }
 
 #custom-niri-windows:hover {
@@ -95,50 +111,14 @@
   background-color: rgb(46, 63, 66); /* 更亮的高亮效果 */
 }
 
-#custom-pomodoro {
-    background-color: #1a1b26; /* 一致的深色背景 */
-    padding: 0.3rem 0.7rem; /* 与其他模块一致的内边距（例如CPU、运行时间） */
-    margin: 5px 0px; /* 上下边距5px，左右边距0px（单独控制的基础） */
-    border-radius: 6px; /* 与其他独立模块一致的圆角 */
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* 一致的阴影 */
-    min-width: 0;
-    border: none;
-    outline: none; /* 确保没有默认轮廓 */
-    /* 背景色、颜色、轮廓和阴影的过渡效果，以获得平滑效果 */
-    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, outline 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    color: #babbf1; /* 平静的颜色，与运行时间模块一致 */
-    font-weight: 600; /* 计时器稍微加粗，与时钟一致 */
-}
-
-/* 自定义番茄钟模块的定位和间距 */
-/* #custom-pomodoro {
-    margin-left: 5px; 与前一个模块的间距（例如时钟） 
-    margin-right: 5px;  与无缝右侧栏开始前的间距（例如蓝牙） 
-} */
-
-/* 新番茄钟模块的悬停效果（与其他模块一致 + 矩形轮廓） */
-/*#custom-pomodoro:hover {
-    background-color: rgb(41, 42, 53); 更亮的高亮效果，与其他独立模块一致 
-    color: #c6d0f5;  悬停时文本颜色变化，与其他独立模块一致 
-    outline: 1px solid rgba(255, 255, 255, 0.1);  悬停时的矩形轮廓 
-    outline-offset: -1px;
-}*/
-
-/* --- 番茄钟模块运行时（工作或休息）的高亮状态 --- */
-#custom-pomodoro.work,
-#custom-pomodoro.break {
-  color: #99d1db; /* 与活动工作区按钮一致的文本颜色 */
-  background-color: rgba(153, 209, 219, 0.1); /* 与活动工作区按钮一致的背景颜色 */
-  box-shadow: inset 0 0 0 1px rgba(153, 209, 219, 0.2); /* 轮廓效果的内阴影 */
-  outline: none;
-}
 
 /* --- 右侧模块（单个、无缝栏） --- */
 #bluetooth,
 #pulseaudio,
 #backlight,
-#network,
-#custom-lock,
+#menu,
+#custom-power,
+#power-profiles-daemon,
 #battery {
   background-color: #1a1b26;
   padding: 0.3rem 0.7rem;
@@ -150,19 +130,28 @@
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
+#power-profiles-daemon:hover,
 #bluetooth:hover,
 #pulseaudio:hover,
 #backlight:hover,
-#network:hover,
 #custom-lock:hover,
 #battery:hover {
   background-color: rgb(41, 42, 53);
 }
 
-#bluetooth {
-  margin-left: 0px; 
+#power-profiles-daemon{
   border-top-left-radius: 6px;
   border-bottom-left-radius: 6px;
+}
+
+#custom-power{
+  margin-right: 7px;
+  border-radius: 6px;
+}
+
+#power-profiles-daemon
+{
+  margin-left: 7px;
 }
 
 #battery {
@@ -182,8 +171,8 @@
   color: #99d1db;
   font-weight: 500;
 }
-
 #pulseaudio {
+
   color: #c6d0f5;
 }
 #backlight {
@@ -222,7 +211,7 @@
 }
 
 /* --- 工具提示样式 --- */
-tooltip {
+#tooltip {
   background-color: #1a1b26;
   color: #dddddd;
   padding: 5px 12px;
@@ -230,5 +219,59 @@ tooltip {
   border-radius: 6px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  font-size: 12px;
+  font-size: 12px; }
+
+/* --- 托盘样式 --- */
+#custom-lock,
+#tray {
+  background-color: #1a1b26; /* 与其他模块一致的背景色 */
+  color: #c6d0f5;            /* 与其他模块一致的文本颜色 */
+  padding: 0.3rem 0.7rem;    /* 与其他模块一致的内边距 */
+  margin: 5px 0px;           /* 与其他模块一致的外边距 */
+  margin-right: 7px;         /* 右侧边距保持不变 */
+  border-radius: 6px;        /* 保持圆角 */
+  transition: background-color 0.2s ease-in-out; /* 添加过渡效果 */
+}
+
+
+/* 托盘图标分割和间距控制 */
+#tray > widget > image {
+  margin: 0 2px;             /* 图标之间的水平间距 */
+  padding: 2px;              /* 图标周围的填充 */
+  border-radius: 3px;        /* 图标圆角 */
+  background-color: rgba(255, 255, 255, 0.05); /* 轻微的背景分割效果 */
+}
+
+/* 托盘图标悬停效果 */
+#tray > widget > image:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* 悬停时的分割效果 */
+  transition: background-color 0.2s ease-in-out;
+}
+
+#tray:hover {
+  background-color: rgb(41, 42, 53); /* 与其他模块一致的悬停效果 */
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  background-color: #e78284;
+}
+
+
+#custom-dnd {
+  padding: 0 10px;
+}
+
+#custom-dnd.dnd {
+  background-color: #bf616a;
+  color: #ffffff;
+}
+
+#custom-dnd.active {
+  background-color: #5e81ac;
+  color: #ffffff;
 }
