@@ -12,5 +12,6 @@ I'm using niri (wayland) on Ubuntu and there are still some issues with some of 
 
 (Practice Git)
 
-![alt text](image/image-1.png)
+![alt text](image/image-3.png)
 ![alt text](image/image-2.png)
+![alt text](image/image-1.png)
