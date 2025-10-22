@@ -372,13 +372,19 @@ window-rule {
     // 因为这是默认配置，我们不想要误报。
     // 如果你愿意，可以只用 app-id="wezterm"。
     match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    match app-id="wechat"
-    match app-id=r#"wechat"# title="^图片和视频$"
-    //default-column-width {}
+    match app-id="wechat$"
+    match app-id=r#"wechat$"# title="^图片和视频$"
     default-column-width { proportion 0.5; }
 }
+
+
 window-rule {
-    match app-id="steam"
+    match app-id="^steam" title="^好友列表$"
+    default-column-width { proportion 0.33333; }
+}
+
+window-rule {
+    match app-id="^steam" title="^Steam$"
     open-maximized true
 }
 
@@ -391,8 +397,6 @@ window-rule {
     match app-id=r#"firefox$"# title="^画中画$"
     match app-id=r#""# title="^画中画$"
     match app-id=r#"wofi"# title="^wofi$"
-    //match app-id="wechat"
-    //match app-id=r#"wechat"# title="^图片和视频$"
     open-floating true
 }
 // 示例：从屏幕捕获中屏蔽两个密码管理器。

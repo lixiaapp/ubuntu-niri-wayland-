@@ -22,7 +22,7 @@ sensitivity = 80
 
 # 条形图的数量（0-512）。0设置为自动（填满控制台）。
 # 条形图的宽度和条形图之间的间距（以字符数计）。
-bars = 16
+bars = 0
 ; bar_width = 2
 ; bar_spacing = 1
 # bar_height仅用于"noritake"格式的输出
@@ -124,9 +124,9 @@ channels = 2
 
 [output]
 
-method = raw
+method = noncurses
 raw_target = /dev/stdout
-data_format = ascii
+#data_format = ascii
 
 # 输出方法。可以是'ncurses'、'noncurses'、'raw'、'noritake'、'sdl'
 # 或'sdl_glsl'。
@@ -174,7 +174,7 @@ data_format = ascii
 ; bit_format = 16bit
 
 # Ascii最大值。在'ascii'模式下，范围将从0运行到此处指定的值
-ascii_max_range = 100
+# ascii_max_range = 100
 
 # Ascii分隔符。在ascii格式中，每个条形图和帧都由分隔符分隔。
 # 使用ascii表中的十进制值（即59 = ';'和10 = '\n'（换行））。
@@ -268,7 +268,7 @@ ascii_max_range = 100
 # 降噪，整数0 - 100。默认77
 # 原始可视化非常嘈杂，此因子调整积分和重力滤波器以保持信号平滑
 # 100将非常缓慢和平滑，0将快速但嘈杂。
-noise_reduction = 30
+noise_reduction = 60
 
 
 [eq]
