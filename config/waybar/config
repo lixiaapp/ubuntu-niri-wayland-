@@ -1,10 +1,12 @@
 {
   "layer": "top",
   "position": "top",
-  "margin": "8px 15px -5px 15px", 
+  "margin": "8px 15px -5px 15px",
   "spacing": 0,
   "modules-left": [
+    "niri/workspaces",
     "custom/uptime",
+    "custom/loadavg",
     "cpu",
     "memory",
     "temperature",
@@ -17,7 +19,6 @@
   ],
   "modules-right": [
     "tray",
-    "custom/dnd",
     "custom/notification",
     "power-profiles-daemon",
     "bluetooth",
@@ -26,8 +27,24 @@
     "battery",
     "custom/power"
   ],
+  
+  "niri/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+        "browser": "",
+        "discord": "",
+        "chat": "<b></b>",
+        "active": "",
+        "default": "<span font-size='4pt'></span>"
+      }
+  },
 
-    "custom/notification": {
+  "custom/loadavg": {
+    "interval": 5,
+    "format": " {}",
+    "exec": "awk '{print $1}' /proc/loadavg"
+  },
+  "custom/notification": {
     "tooltip": true,
     "format": "{icon}",
     "format-icons": {
@@ -115,23 +132,35 @@
     "format-disconnected": "󰤠 ",
     "interval": 5,
     "tooltip-format": "{essid} ({signalStrength}%)\nIP:{ipaddr} GW:{gwaddr}",
-    "on-click": "nm-connection-editor"
+    "on-click": "nm-connection-editor",
+    "max-length": 50
   },
   "cpu": {
-    "interval": 1,
-    "format": " {usage:>2}%",
-    "on-click": "kitty btop"
+    "interval": 10,
+    "format": "",
+    "on-click": "kitty btop",
+    "states": {
+      "warning": 80,
+      "critical": 90
+    },
+    "format-warning": " {usage:>2}%",
+    "format-critical": " {usage:>2}%"
   },
   "memory": {
     "interval": 30,
-    "format": "  {used:0.1f}G/{total:0.1f}G ",
+    "format": "",
+    "states": {
+      "warning": 75,
+      "critical": 90
+    },
+    "format-warning": "  {used:0.1f}G/{total:0.1f}G ",
+    "format-critical": "  {used:0.1f}G/{total:0.1f}G ",
     "tooltip-format": "Memory: {used:0.1f}G/{total:0.1f}G ({percentage}%)",
     "on-click": "kitty btop"
   },
   "temperature": {
     "interval": 10,
     "format": "  {temperatureC}°C ",
-    "format-critical": "  {temperatureC}°C ",
     "critical-threshold": 80,
     "tooltip-format": " CPU Temperature: {temperatureC}°C ",
     "on-click": "kitty -e bash -c 'sensors; exec bash'"
@@ -175,7 +204,8 @@
         ""
       ]
     },
-    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-click-right": "pavucontrol"
   },
   "battery": {
     "interval": 2,
@@ -200,10 +230,9 @@
     ]
   },
   "tray": {
-    //"icon-size": 16,           // 图标大小
-    "spacing": 8, // 图标之间的间距
-    "show-empty": false, // 当没有tray项时不显示tray区域
-    "padding": 2, // 图标周围的填充
-    "margin": 2 // 图标之间的外边距
+    "spacing": 8,
+    "show-empty": false,
+    "padding": 2,
+    "margin": 2
   }
 }

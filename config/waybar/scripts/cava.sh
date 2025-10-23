@@ -1,7 +1,10 @@
 #!/bin/bash
 # 极致性能版cava脚本
 
-trap 'pkill -f "cava -p ~/.config/waybar/scripts/cava_config" 2>/dev/null; exit 0' SIGPIPE SIGTERM SIGINT
+CAVA_CMD="/home/verfox/.config/waybar/scripts/cava_config"
+
+
+trap 'pkill -f "cava -p $CAVA_CMD" 2>/dev/null; exit 0' SIGPIPE SIGTERM SIGINT
 
 # 预计算所有可能的映射（0-100到字符的映射）
 # 直接映射0-8数字到字符
@@ -18,7 +21,7 @@ declare -a char_map=(
 )
 
 # 检查cava进程是否在运行，如果已经在运行则退出
-if pgrep -f "cava -p ~/.config/waybar/scripts/cava_config" > /dev/null; then
+if pgrep -f "cava -p $CAVA_CMD" > /dev/null; then
     echo "cava进程已经在运行，退出脚本" >&2
     exit 0
 fi
@@ -28,7 +31,7 @@ pipe_file="/tmp/cava_pipe_$$"
 mkfifo "$pipe_file"
 
 # 启动cava进程，将输出重定向到命名管道
-cava -p ~/.config/waybar/scripts/cava_config 2>/dev/null > "$pipe_file" &
+cava -p $CAVA_CMD 2>/dev/null > "$pipe_file" &
 cava_pid=$!
 
 # 设置后台进程退出时清理命名管道
@@ -55,4 +58,4 @@ while IFS=';' read -a values < "$pipe_file" 2>/dev/null; do
 done
 
 # 清理cava进程
-pkill -f "cava -p ~/.config/waybar/scripts/cava_config" 2>/dev/null
+pkill -f "cava -p $CAVA_CMD" 2>/dev/null
